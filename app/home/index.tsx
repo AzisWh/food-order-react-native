@@ -1,8 +1,65 @@
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constant/icons";
 import { images } from "@/constant/images";
+import { BrandData, brandInterface } from "@/data/brandData";
+import { catData, catInterface } from "@/data/categoriesCard";
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+
+interface subInterface {
+  label: string;
+  button: string;
+}
+
+const DailyImage = [
+  {
+    id: 1,
+    image: images.fastfood,
+  },
+  {
+    id: 2,
+    image: images.burgerset,
+  },
+  {
+    id: 3,
+    image: images.fastfood2,
+  },
+  {
+    id: 4,
+    image: images.festivalfood,
+  },
+];
+
+const SubInfo = ({ label, button }: subInterface) => (
+  <View className="flex flex-row justify-between">
+    <Text className="text-2xl font-normal text-black">{label}</Text>
+    <View className="p-2 rounded-full bg-lightred">
+      <Text className="text-sm font-light text-white uppercase">{button}</Text>
+    </View>
+  </View>
+);
+
+const CategoriesItem = ({ title, image }: catInterface) => (
+  <View className="flex flex-row items-center ">
+    <Image source={image} className="w-24" />
+    <Text className="pr-2 text-2xl font-light">{title}</Text>
+  </View>
+);
+
+const BrandsItem = ({ name, time, image }: brandInterface) => (
+  <View className="flex flex-col items-center mx-2">
+    <Image source={image} className="w-20 h-20" />
+    <Text className="mt-1 text-2xl text-gray-500">{name}</Text>
+    <Text className="text-sm font-light text-gray-500">{time} MIN</Text>
+  </View>
+);
 
 const index = () => {
   return (
@@ -18,11 +75,11 @@ const index = () => {
         resizeMode="contain"
       />
       <ScrollView
-        className="flex-1 px-5 "
+        className="flex-1 "
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ minHeight: "100%", paddingBottom: 10 }}
       >
-        <View className="flex-1 mt-20">
+        <View className="flex-1 px-5 pb-10 mt-20">
           <View className="flex flex-row justify-between">
             <View className="flex flex-row gap-2 mb-5">
               <View className="p-4 rounded-xl bg-lightred">
@@ -72,6 +129,51 @@ const index = () => {
             source={images.coke}
             className="absolute right-[-50px] top-[150px]"
             resizeMode="contain"
+          />
+          <View className="mt-10 ">
+            <SubInfo label="Categories" button="View All" />
+          </View>
+          <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
+            <FlatList
+              horizontal
+              data={catData}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <CategoriesItem title={item.title} image={item.image} />
+              )}
+            />
+            <View className="py-5">
+              <SubInfo label="Top Brands in spotlight" button="View All" />
+            </View>
+            <FlatList
+              horizontal
+              data={BrandData}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <BrandsItem
+                  name={item.name}
+                  time={item.time}
+                  image={item.image}
+                />
+              )}
+            />
+          </ScrollView>
+        </View>
+        <View className="bg-gray-400 w-full absolute top-[820px] mt-[60px] p-[10px] rounded-t-xl"></View>
+        <View className="bg-[#FEEBD0] w-full h-[200px] p-[10px] rounded-t-xl">
+          <Text className="px-5 mt-4 text-2xl text-black font-semimedium">
+            Your Daily Deals
+          </Text>
+          <FlatList
+            horizontal
+            className="mt-5"
+            data={DailyImage}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View className="flex flex-row gap-2">
+                <Image source={item.image} className="mx-3 w-30" />
+              </View>
+            )}
           />
         </View>
       </ScrollView>
