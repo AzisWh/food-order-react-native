@@ -2,12 +2,12 @@ import { images } from "@/constant/images";
 import { Link } from "expo-router";
 import React from "react";
 import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 const index = () => {
@@ -39,7 +39,7 @@ const index = () => {
             food order
           </Text>
 
-          <Link href="/(tabs)" className="mt-10" asChild>
+          <Link href="/home" className="mt-10" asChild>
             <TouchableOpacity className="w-[209px] h-[50px] px-5 py-3  bg-white rounded-full active:bg-gray-400 shadow-xl ">
               <Text className="text-lg font-medium text-center text-black">
                 Get Started
