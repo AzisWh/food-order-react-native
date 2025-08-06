@@ -12,6 +12,11 @@ const index = () => {
         source={images.elipse7}
         resizeMode="contain"
       />
+      <Image
+        className="absolute right-0 top-[230px]"
+        source={images.elipse6}
+        resizeMode="contain"
+      />
       <ScrollView
         className="flex-1 px-5 "
         showsVerticalScrollIndicator={false}
@@ -45,6 +50,28 @@ const index = () => {
           <SearchBar
             placeholder={"Search for shops & resturents"}
             classname="mt-20"
+          />
+          <View className="flex flex-col py-5">
+            <Text className="text-4xl font-light">Food</Text>
+            <Text className="text-5xl font-bold text-lightred">Delivery</Text>
+          </View>
+          <View className="p-10 bg-[#D82231] rounded-full shadow-xl ">
+            <View className="flex flex-row justify-between py-5">
+              <View className="flex flex-col">
+                <Text className="font-bold text-white">14 March</Text>
+                <Text className="text-xl font-bold text-white">
+                  Free Cold Drink
+                </Text>
+                <Text className="font-light text-white">
+                  For All Orders Over 100$
+                </Text>
+              </View>
+            </View>
+          </View>
+          <Image
+            source={images.coke}
+            className="absolute right-[-50px] top-[150px]"
+            resizeMode="contain"
           />
         </View>
       </ScrollView>
